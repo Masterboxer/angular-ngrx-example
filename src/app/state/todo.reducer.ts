@@ -6,5 +6,5 @@ export const initialState: ReadonlyArray<ITodo> = [];
 
 export const todosReducer = createReducer(
   initialState,
-  on(TodosApiActions.retrievedTodosList, (_state, { todos }) => todos)
+  on(TodosApiActions.retrievedTodosList, (_state, { todos }) => todos),
 );

@@ -6,10 +6,10 @@ export const selectTodosFeature =
 
 export const selectAllTodos = createSelector(
   selectTodosFeature,
-  (todos) => todos
+  (todos) => todos,
 );
 
 export const selectTodoById = (todoId: number) =>
   createSelector(selectTodosFeature, (todos) =>
-    todos.find((todo) => todo.id === todoId)
+    todos.find((todo) => todo.id === todoId),
   );

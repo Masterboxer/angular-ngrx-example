@@ -15,7 +15,7 @@ export class AppService {
 
   getAllTodosSubscription() {
     return this.httpClient.get<ITodo[]>(
-      'https://jsonplaceholder.typicode.com/posts'
+      'https://jsonplaceholder.typicode.com/posts',
     );
   }
 
@@ -29,12 +29,12 @@ export class AppService {
             this.getAllTodosSubscription().subscribe({
               next: (todos) => {
                 this.store.dispatch(
-                  TodosApiActions.retrievedTodosList({ todos })
+                  TodosApiActions.retrievedTodosList({ todos }),
                 );
               },
             });
           }
-        })
+        }),
       )
       .subscribe();
   }
