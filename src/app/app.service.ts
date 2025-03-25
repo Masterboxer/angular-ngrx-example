@@ -15,27 +15,19 @@ export class AppService {
 
   getAllTodosSubscription() {
     return this.httpClient.get<ITodo[]>(
-      'https://jsonplaceholder.typicode.com/posts',
+      'https://jsonplaceholder.typicode.com/posts'
     );
   }
 
   getAllTodosList() {
-    this.store
-      .select(selectAllTodos)
-      .pipe(
-        first(),
-        tap((todos) => {
-          if (!todos || todos.length === 0) {
-            this.getAllTodosSubscription().subscribe({
-              next: (todos) => {
-                this.store.dispatch(
-                  TodosApiActions.retrievedTodosList({ todos }),
-                );
-              },
-            });
-          }
-        }),
-      )
-      .subscribe();
+    this.store.select(selectAllTodos).subscribe((todos) => {
+      if (!todos || todos.length === 0) {
+        this.getAllTodosSubscription().subscribe({
+          next: (todos) => {
+            this.store.dispatch(TodosApiActions.retrievedTodosList({ todos }));
+          },
+        });
+      }
+    });
   }
 }
